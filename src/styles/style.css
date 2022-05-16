@@ -1,0 +1,116 @@
+.login__container {
+  width: 30%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0 auto;
+  border: 2px solid #afafaf;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border-radius: 3px;
+}
+
+.login__container .name__container,
+.login__container .username__container,
+.login__container .email__container,
+.login__container .password__container,
+.login__container .confirm__password__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-bottom: 6px;
+}
+
+.login__container .name__container input,
+.login__container .username__container input,
+.login__container .email__container input,
+.login__container .password__container input,
+.login__container .confirm__password__container input {
+  padding: 2px 8px;
+  width: 100%;
+  font-size: 12px;
+  outline: none;
+}
+
+.login__container .name__container label,
+.login__container .username__container label,
+.login__container .email__container label,
+.login__container .password__container label,
+.login__container .confirm__password__container label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.login__container .name__container .error__container,
+.login__container .username__container .error__container,
+.login__container .email__container .error__container,
+.login__container .password__container .error__container,
+.login__container .confirm__password__container .error__container {
+  color: red;
+  font-weight: 400;
+  font-size: 12px;
+  padding-top: 4px;
+  font-weight: 400;
+}
+
+.login__container .checkbox__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.login__container .checkbox__container input {
+  margin-left: 12px;
+}
+
+.login__container .checkbox__container h5 {
+  margin-top: 8px;
+  margin-left: 4px;
+}
+
+.login__container .checkbox_label {
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.login__container .checkbox__error__container {
+  color: red;
+  font-weight: 400;
+  font-size: 12px;
+  margin-top: -32px;
+  font-weight: 400;
+}
+
+.login__container button {
+  background-color: #1313c7;
+  border: none;
+  border-radius: 2px;
+  padding: 5px 16px;
+  color: #fff;
+  font-weight: 300;
+  margin-top: 12px;
+  font-size: 12px;
+}
+
+.login__container button:hover {
+  background-color: #2f00ff;
+}
+/*# sourceMappingURL=style.css.map */

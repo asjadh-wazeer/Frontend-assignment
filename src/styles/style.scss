@@ -1,0 +1,86 @@
+@mixin inputTextContainer {
+    display: flex;
+        flex-direction: column;
+        padding-bottom: 6px;
+        input {
+            padding:2px 8px;
+            width: 100%;
+            font-size: 12px;
+            outline:none;
+
+        };
+        label {
+            font-weight: 600;
+            font-size: 14px;
+        };
+        .error__container {
+            color: red;
+            font-weight: 400;
+            font-size: 12px;
+            padding-top: 4px;
+            font-weight: 400;
+        }
+}
+
+.login__container {
+    width: 30%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border: 2px solid rgb(175, 175, 175);
+    padding-top: 24px;
+    padding-bottom: 24px;
+    border-radius: 3px;
+    
+    
+    
+    .name__container,
+    .username__container,
+    .email__container,
+    .password__container,
+    .confirm__password__container {
+        @include inputTextContainer;
+    };
+    .checkbox__container {
+        display: flex;
+        align-items: center;
+
+        input {
+            margin-left: 12px;
+        };
+        h5 {
+            margin-top: 8px;
+            margin-left: 4px;
+        };
+        
+    }
+    .checkbox_label {
+        font-weight: 500;
+        font-size: 12px;
+    }
+    .checkbox__error__container {
+            color: red;
+            font-weight: 400;
+            font-size: 12px;
+            margin-top: -32px;
+            font-weight: 400;
+    }
+    button {
+        background-color: rgb(19, 19, 199);
+        border: none;
+        border-radius: 2px;
+        padding: 5px 16px;
+        color: #fff;
+        font-weight: 300;
+        margin-top: 12px;
+        font-size: 12px;
+        
+        &:hover {
+            background-color: rgb(47, 0, 255);
+        }
+    }
+    
+}

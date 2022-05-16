@@ -1,116 +1,175 @@
-import { useState, useEffect } from "react";
-import "./App.css";
-import {Link} from "react-router-dom"
+import React, { Fragment } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+import {FormControlLabel} from "@material-ui/core";
+import { useNavigate } from "react-router-dom";
 
-function Form() {
-  const initialValues = { username: "", email: "", password: "" };
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+const Login = () => {
+  const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-  };
+const validationSchema = Yup.object().shape({
+  fullname: Yup.string().required("Full Name is required"),
+  username: Yup.string()
+    .required("Username is required")
+    .min(6, "Username must be at least 6 characters")
+    .max(20, "Username must not exceed 20 characters"),
+  email: Yup.string().required("Email is required").email("Email is invalid"),
+  password: Yup.string()
+    .required("Password is required")
+    .min(6, "Password must be at least 6 characters")
+    .max(40, "Password must not exceed 40 characters"),
+  confirmPassword: Yup.string()
+    .required("Confirm Password is required")
+    .oneOf([Yup.ref("password"), null], "Confirm Password does not match"),
+  acceptTerms: Yup.bool().oneOf([true], "Accept Terms is required"),
+});
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setFormErrors(validate(formValues));
-    setIsSubmit(true);
-  };
 
-  useEffect(() => {
-    console.log(formErrors);
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
-    }
-  }, [formErrors]);
-  const validate = (values) => {
-    const errors = {};
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if (!values.username) {
-      errors.username = "Username is required!";
-    }
-    if (!values.email) {
-      errors.email = "Email is required!";
-    } else if (!regex.test(values.email)) {
-      errors.email = "This is not a valid email format!";
-    }
-    if (!values.password) {
-      errors.password = "Password is required";
-    } else if (values.password.length < 4) {
-      errors.password = "Password must be more than 4 characters";
-    } else if (values.password.length > 10) {
-      errors.password = "Password cannot exceed more than 10 characters";
-    } if (!values.checkbox) {
-      errors.checkbox = "Check your checkbox";
-    }
-    return errors;
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
+
+  const onSubmit = (data) => {
+    console.log(JSON.stringify(data, null, 2));
+    navigate("/chart");
   };
 
   return (
-    <div className="container">
-      {Object.keys(formErrors).length === 0 && isSubmit ? (
-        <div className="ui message success">Signed in successfully</div>
-      ) : (
-        <pre>
-            {/* {JSON.stringify(formValues, undefined, 2)} */}
+    <Fragment>
+      <div className="login__container">
+        <div className="">
+          <div className="name__container">
+            <label>Full Name</label>
+            <input
+              required
+              id="fullname"
+              name="fullname"
+              label="Full Name"
+              margin="dense"
+              {...register("fullname")}
+              error={errors.fullname ? true : false}
+            />
+            <h5 className="error__container">{errors.fullname?.message}</h5>
+          </div>
 
-        </pre>
-      )}
-
-      <form onSubmit={handleSubmit}>
-        <h1>Login Form</h1>
-        <div className="ui divider"></div>
-        <div className="ui form">
-          <div className="field">
+          <div className="username__container">
             <label>Username</label>
             <input
-              type="text"
+              required
+              id="username"
               name="username"
-              placeholder="Username"
-              value={formValues.username}
-              onChange={handleChange}
+              label="Username"
+              margin="dense"
+              {...register("username")}
+              error={errors.username ? true : false}
             />
+            <h5 className="error__container">{errors.username?.message}</h5>
           </div>
-          <p>{formErrors.username}</p>
-          <div className="field">
+
+          <div className="email__container">
             <label>Email</label>
             <input
-              type="text"
+              required
+              id="email"
               name="email"
-              placeholder="Email"
-              value={formValues.email}
-              onChange={handleChange}
+              label="Email"
+              fullWidth
+              margin="dense"
+              {...register("email")}
+              error={errors.email ? true : false}
             />
+            <h5 className="error__container">{errors.email?.message}</h5>
           </div>
-          <p>{formErrors.email}</p>
 
-          {/*  */}
-          <div className="field">
-            <label>Checkbox</label>
-            <input type="checkbox" name="checkbox" onChange={handleChange} />
-          </div>
-          <p>{formErrors.checked}</p>
-          {/*  */}
-
-          <div className="field">
+          <div className="password__container">
             <label>Password</label>
             <input
-              type="password"
+              required
+              id="password"
               name="password"
-              placeholder="Password"
-              value={formValues.password}
-              onChange={handleChange}
+              label="Password"
+              type="password"
+              fullWidth
+              margin="dense"
+              {...register("password")}
+              error={errors.password ? true : false}
             />
+            <h5 className="error__container">{errors.password?.message}</h5>
           </div>
-          <p>{formErrors.password}</p>
-          <Link to="/chart"><button className="fluid ui button blue">Submit</button></Link>
-        </div>
-      </form>
-    </div>
-  );
-}
 
-export default Form;
+          <div className="confirm__password__container">
+            <label>Confirm Password</label>
+            <input
+              required
+              id="confirmPassword"
+              name="confirmPassword"
+              label="Confirm Password"
+              type="password"
+              fullWidth
+              margin="dense"
+              {...register("confirmPassword")}
+              error={errors.confirmPassword ? true : false}
+            />
+            <h5 className="error__container">
+              {errors.confirmPassword?.message}
+            </h5>
+          </div>
+
+          <div>
+            <FormControlLabel
+              className="checkbox__container"
+              control={
+                <Controller
+                  control={control}
+                  name="acceptTerms"
+                  defaultValue="false"
+                  inputRef={register()}
+                  render={({ field: { onChange } }) => (
+                    <input
+                      color="primary"
+                      type="checkbox"
+                      onChange={(e) => onChange(e.target.checked)}
+                    />
+                    // <>
+                    //   <input type="checkbox" style={{ margin: "12px" }} />
+                    //   <input type="text" style={{ backgroundColor: "red" }} />
+                    // </>
+                  )}
+                />
+              }
+              label={
+                <h5 className="checkbox_label">
+                  I have read and agree to the Terms *
+                </h5>
+              }
+            />
+            <br />
+            <h5 className="checkbox__error__container">
+              {errors.acceptTerms ? "(" + errors.acceptTerms.message + ")" : ""}
+            </h5>
+          </div>
+
+          <button
+            variant="contained"
+            color="primary"
+            onClick={handleSubmit(onSubmit)}
+          >
+            Create Account
+          </button>
+        </div>
+      </div>
+    </Fragment>
+  );
+};
+
+export default Login;
+
+
+
 
