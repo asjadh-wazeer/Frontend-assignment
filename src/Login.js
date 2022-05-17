@@ -133,7 +133,7 @@ const validationSchema = Yup.object().shape({
                 />
               }
               label={
-                <h5 className="checkbox_label">
+                <h5 className="checkbox__label">
                   I have read and agree to the Terms *
                 </h5>
               }

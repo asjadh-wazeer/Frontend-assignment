@@ -14,7 +14,7 @@
         label {
             font-weight: 600;
             font-size: 14px;
-            color: #bdbfc4
+            color: #bdbfc4;
         };
         .error__container {
             color: red;
@@ -25,7 +25,9 @@
         }
 }
 
-.login__container {
+.login {
+    &__container{
+
     width: 30%;
     margin: 0 auto;
     display: flex;
@@ -50,21 +52,23 @@
     .password__container,
     .confirm__password__container {
         @include inputTextContainer;
-    };
-    .checkbox__container {
+    }
+    .checkbox {
+        &__container {
+
         display: flex;
         align-items: center;
 
         input {
             margin-left: 12px;
-        };
+        }
         h5 {
             margin-top: 8px;
             margin-left: 4px;
-        };
-        
+        }
+    }   
     }
-    .checkbox_label {
+    .checkbox__label {
         font-weight: 500;
         font-size: 12px;
     }
@@ -89,5 +93,5 @@
             background-color: rgb(135, 197, 238);
         }
     }
-    
+}  
 }
