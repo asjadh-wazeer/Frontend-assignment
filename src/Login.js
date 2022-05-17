@@ -44,6 +44,7 @@ const validationSchema = Yup.object().shape({
     <Fragment>
       <div className="login__container">
         <div className="">
+          <h2>Create an account</h2>
           <div className="name__container">
             <label>Full Name</label>
             <input
@@ -51,7 +52,6 @@ const validationSchema = Yup.object().shape({
               id="fullname"
               name="fullname"
               label="Full Name"
-              margin="dense"
               {...register("fullname")}
               error={errors.fullname ? true : false}
             />
@@ -65,7 +65,6 @@ const validationSchema = Yup.object().shape({
               id="username"
               name="username"
               label="Username"
-              margin="dense"
               {...register("username")}
               error={errors.username ? true : false}
             />
@@ -79,8 +78,6 @@ const validationSchema = Yup.object().shape({
               id="email"
               name="email"
               label="Email"
-              fullWidth
-              margin="dense"
               {...register("email")}
               error={errors.email ? true : false}
             />
@@ -95,8 +92,6 @@ const validationSchema = Yup.object().shape({
               name="password"
               label="Password"
               type="password"
-              fullWidth
-              margin="dense"
               {...register("password")}
               error={errors.password ? true : false}
             />
@@ -111,8 +106,6 @@ const validationSchema = Yup.object().shape({
               name="confirmPassword"
               label="Confirm Password"
               type="password"
-              fullWidth
-              margin="dense"
               {...register("confirmPassword")}
               error={errors.confirmPassword ? true : false}
             />
@@ -132,14 +125,10 @@ const validationSchema = Yup.object().shape({
                   inputRef={register()}
                   render={({ field: { onChange } }) => (
                     <input
-                      color="primary"
                       type="checkbox"
                       onChange={(e) => onChange(e.target.checked)}
                     />
-                    // <>
-                    //   <input type="checkbox" style={{ margin: "12px" }} />
-                    //   <input type="text" style={{ backgroundColor: "red" }} />
-                    // </>
+                    
                   )}
                 />
               }

@@ -1,5 +1,5 @@
 @mixin inputTextContainer {
-    display: flex;
+        display: flex;
         flex-direction: column;
         padding-bottom: 6px;
         input {
@@ -7,16 +7,19 @@
             width: 100%;
             font-size: 12px;
             outline:none;
-
+            border-color: #eeeded;
+            border-radius: 4px;
+            
         };
         label {
             font-weight: 600;
             font-size: 14px;
+            color: #bdbfc4
         };
         .error__container {
             color: red;
-            font-weight: 400;
-            font-size: 12px;
+            font-weight: 500;
+            font-size: 10px;
             padding-top: 4px;
             font-weight: 400;
         }
@@ -30,12 +33,16 @@
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    border: 2px solid rgb(175, 175, 175);
+    border: 6px solid #F2F3F8;
     padding-top: 24px;
     padding-bottom: 24px;
     border-radius: 3px;
     
-    
+    h2 {
+        font-size: 18px;
+        margin-bottom: 18px;
+        color: #5A6678;
+    }
     
     .name__container,
     .username__container,
@@ -64,22 +71,22 @@
     .checkbox__error__container {
             color: red;
             font-weight: 400;
-            font-size: 12px;
+            font-size: 10px;
             margin-top: -32px;
             font-weight: 400;
     }
     button {
-        background-color: rgb(19, 19, 199);
+        background-color: #4eb0f1;
         border: none;
         border-radius: 2px;
-        padding: 5px 16px;
+        padding: 6px 18px;
         color: #fff;
         font-weight: 300;
         margin-top: 12px;
         font-size: 12px;
         
         &:hover {
-            background-color: rgb(47, 0, 255);
+            background-color: rgb(135, 197, 238);
         }
     }
     
